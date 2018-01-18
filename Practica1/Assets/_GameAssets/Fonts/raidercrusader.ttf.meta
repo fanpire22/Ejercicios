@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 5e68b60da36a38b468b7c7304d4abc57
+timeCreated: 1515694665
+licenseType: Pro
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Raider Crusader
+  fontNames:
+  - Raider Crusader
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

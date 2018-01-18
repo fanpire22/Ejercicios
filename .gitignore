@@ -1,0 +1,5 @@
+*.csproj
+*.sln
+etc
+Library
+UnityPackageManager
