@@ -54,4 +54,13 @@ public class Damageable : MonoBehaviour
     {
        if(_canvasLife) _canvasLife.SetValue((float) _life / _maxLife);
     }
+
+    public bool Heal(int amount)
+    {
+        //Curamos hasta un máximo de nuestra vida máxima
+        bool haCambiado = _life != _maxLife;
+        _life = Mathf.Min((_life + amount), _maxLife);
+        UpdateHUD();
+        return haCambiado;
+    }
 }

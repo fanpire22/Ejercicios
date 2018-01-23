@@ -11,6 +11,7 @@ public class ShooterCharacter : Damageable
 
     [SerializeField] GameObject _pauseMenu;
     [SerializeField] Text _hudAmmo;
+    [SerializeField] Image _icono;
 
 
     //Arma seleccionada actual
@@ -25,7 +26,7 @@ public class ShooterCharacter : Damageable
         _currentW = _weapons[_currentI];
         UpdateAmmo();
     }
-    
+
     private void UpdateAmmo()
     {
 
@@ -62,18 +63,43 @@ public class ShooterCharacter : Damageable
         ascii = ascii - 49;
 
         //Hemos pulsado un número
-        if (ascii >= 0 && ascii <= 9) SelectWeaponAtIndex(ascii);
+        if (ascii >= 0 && ascii <= 9) SelectWeaponAtIndex(ascii, 0);
     }
 
     /// <summary>
     /// Elegimos el arma ubicada en un índice concreto
     /// </summary>
     /// <param name="index">número del array específico.</param>
-    private void SelectWeaponAtIndex(int index)
+    private void SelectWeaponAtIndex(int index, float direction)
     {
         //Estamos eligiendo un arma no válida, salimos de la función
         if (index >= _weapons.Length)
             return;
+
+        
+
+        if (direction == 0)
+            //intentamos elegir un arma que no tenemos por su número
+            if (!_weapons[index].bInventory) return;
+            else if (direction > 0)
+            {
+                //intentamos elegir un arma que no tenemos en dirección ascendente
+                if (!_weapons[index].bInventory)
+                {
+                    SelectWeaponAtIndex(index + 1, direction);
+                }
+            }
+            else
+            {
+                //intentamos elegir un arma que no tenemos en dirección descendente
+                if (!_weapons[index].bInventory)
+                {
+                    if (index < 1)
+                    { SelectWeaponAtIndex(_weapons.Length - 1, direction); }
+                    else
+                    { SelectWeaponAtIndex(index - 1, direction); };
+                }
+            }
 
         //Desactivamos el arma sacada
         _currentW.gameObject.SetActive(false);
@@ -81,6 +107,7 @@ public class ShooterCharacter : Damageable
         //Seleccionamos el arma correspondiente a nuestro array y la activamos
         _currentW = _weapons[index];
         _currentW.gameObject.SetActive(true);
+        _icono.sprite = _currentW.imagen;
 
         _currentI = index;
         UpdateAmmo();
@@ -105,7 +132,7 @@ public class ShooterCharacter : Damageable
                 _currentI = _weapons.Length - 1;
         }
 
-        SelectWeaponAtIndex(_currentI);
+        SelectWeaponAtIndex(_currentI, direction);
 
     }
 
@@ -131,11 +158,30 @@ public class ShooterCharacter : Damageable
         SceneManager.LoadScene(0);
     }
 
+    /// <summary>
+    /// Se nos ha muerto el personaje: volvemos al menú principal
+    /// </summary>
     protected override void OnDead()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         ReturnMainMenu();
+    }
+
+    public bool AddAmmo(int index, int amount)
+    {
+        bool haCambiado = false;
+        if (_weapons[index].bInventory)
+        {
+            haCambiado = _weapons[index].AddAmmo(amount);
+            UpdateAmmo();
+        }
+        return haCambiado;
+    }
+
+    public void AddWeapon(int index)
+    {
+        _weapons[index].bInventory = true;
     }
 
 }

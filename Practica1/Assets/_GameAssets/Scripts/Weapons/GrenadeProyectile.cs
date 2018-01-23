@@ -55,8 +55,6 @@ public class GrenadeProyectile : MonoBehaviour
         if (prefExplosion)
         {
             GameObject explosion = Instantiate(prefExplosion, transform.position, Quaternion.identity);
-
-            Destroy(explosion, 1.7f);
         }
 
         //Destruimos la granada

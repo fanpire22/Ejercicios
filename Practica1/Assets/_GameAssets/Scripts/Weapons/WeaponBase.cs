@@ -14,6 +14,9 @@ public abstract class WeaponBase : MonoBehaviour
     [SerializeField] private int _maxAmmo;
     [SerializeField] private AudioClip _sfxEmpty;
     [SerializeField] private bool _bInfiniteAmmo = false;
+    public Sprite imagen;
+
+    public bool bInventory;
 
     private float _nextShot;
     private float _nextAction;
@@ -29,9 +32,11 @@ public abstract class WeaponBase : MonoBehaviour
     /// </summary>
     protected abstract void OnSecondAction();
 
-    public void AddAmmo(int amount)
+    public bool AddAmmo(int amount)
     {
+        bool haCambiado = _currentAmmo != _maxAmmo;
         _currentAmmo = Mathf.Min(_currentAmmo + amount, _maxAmmo);
+        return haCambiado;
     }
 
     /// <summary>
