@@ -10,6 +10,7 @@ public class ShooterCharacter : Damageable
     [SerializeField] private WeaponBase[] _weapons;
 
     [SerializeField] GameObject _pauseMenu;
+    [SerializeField] GameObject _deathMenu;
     [SerializeField] Text _hudAmmo;
     [SerializeField] Image _icono;
 
@@ -35,6 +36,9 @@ public class ShooterCharacter : Damageable
 
     private void Update()
     {
+
+        if (IsDead) return;
+
         if (MainMenu.GamePause) return;
         float mouseWheel = Input.GetAxis("Mouse ScrollWheel");
 
@@ -52,11 +56,16 @@ public class ShooterCharacter : Damageable
         if (Input.GetButton("Fire2") && _currentW) _currentW.SecondAction();
 
         //Pausa (escape)
-        if (Input.GetButton("Pause")) ShowMenu(true);
+        if (Input.GetButton("Pause"))
+        {
+            ShowMenu(true);
+        }
+
     }
 
     private void OnGUI()
     {
+        if (IsDead) return;
         if (MainMenu.GamePause) return;
         //obtenemos la tecla pulsada en código ascii, y le restamos el valor a partir del que empezamos a contar el valor 1
         int ascii = Event.current.character;
@@ -76,7 +85,7 @@ public class ShooterCharacter : Damageable
         if (index >= _weapons.Length)
             return;
 
-        
+
 
         if (direction == 0)
             //intentamos elegir un arma que no tenemos por su número
@@ -165,7 +174,8 @@ public class ShooterCharacter : Damageable
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-        ReturnMainMenu();
+        Time.timeScale = 1;
+        _deathMenu.SetActive(true);
     }
 
     public bool AddAmmo(int index, int amount)

@@ -30,17 +30,16 @@ public class EnemyTower : Enemy
     // Update is called once per frame
     void Update()
     {
-        Vector3 direction = player.transform.position - transform.position;
-
-        transform.rotation = Quaternion.LookRotation(direction.normalized);
-
-        if(direction.magnitude < _attackDistance)
+        if (!player.IsDead)
         {
-            Shoot();
-        }
-        else
-        {
+            Vector3 direction = player.transform.position - transform.position;
 
+            transform.rotation = Quaternion.LookRotation(direction.normalized);
+
+            if (direction.magnitude < _attackDistance)
+            {
+                Shoot();
+            }
         }
     }
 

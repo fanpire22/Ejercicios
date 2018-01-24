@@ -12,7 +12,7 @@ public class Gun : WeaponBase
     private void Awake()
     {
         _rayOrigin = transform.Find("GunMuzzle");
-        base.AddAmmo(1000);
+        base.AddAmmo(200);
     }
 
     /// <summary>

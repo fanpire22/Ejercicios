@@ -12,6 +12,8 @@ public class Damageable : MonoBehaviour
     [SerializeField] HUDLifeBar _canvasLife;
     [SerializeField] GameObject _prefBulletHole;
 
+    public bool IsDead { get; private set; }
+
     private int _life;
 
     protected virtual void Start()
@@ -38,7 +40,10 @@ public class Damageable : MonoBehaviour
         _life -= Mathf.Max((damage - _armor),1);
 
         if (_life < 1)
+        {
+            IsDead = true;
             OnDead();
+        }
 
         UpdateHUD();
 
