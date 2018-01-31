@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: da2c8a0455004b74c98f47e97f8c76d8
+timeCreated: 1517427150
+licenseType: Pro
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pokemon Unown GB
+  fontNames:
+  - Pokemon Unown GB
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
