@@ -1,23 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatManager : MonoBehaviour
 {
 
     [Header("User Interface")]
-    [SerializeField] MenuElement[] MainOptions;
+    [SerializeField]
+    MenuElement[] MainOptions;
     [SerializeField] MenuElement[] CombatOptions;
     [SerializeField] GameObject AttackMenu;
     [SerializeField] GameObject MainMenu;
     [SerializeField] AttackInfo atkInfo;
-    
+    [SerializeField] Image PokemonPlayer;
+    [SerializeField] Image PokemonEnemy;
+
+    Pokemon[] _pokemonList;
+    Pokemon _currentPokemon;
+
     //opción de la ventana derecha
     int currentMainOptionIndex;
     //opción de la ventana izquierda
     int currentCombatOptionIndex;
     //ventana actual elegida
     int currentMenu;
+
+    //Índice que determina qué pokémon tiene el turno
+    int _currentPokemonIndex = 1;
+
+    private void Awake()
+    {
+        for(int i = 0; i < CombatOptions.Length; i++)
+        {
+            SkillMenuElement element = CombatOptions[i] as SkillMenuElement;
+            element.Initialize(i, this);
+        }
+    }
 
     private void Start()
     {
@@ -28,9 +47,9 @@ public class CombatManager : MonoBehaviour
         AttackMenu.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-
+        if (_currentPokemonIndex != 0) return;
         // Controlamos qué tecla se ha pulsado
 
         bool bUp = Input.GetKeyDown(KeyCode.UpArrow) ||
@@ -166,7 +185,8 @@ public class CombatManager : MonoBehaviour
                     break;
                 case 1:
                     //Menú de combate
-
+                    SkillMenuElement skl = CombatOptions[currentCombatOptionIndex] as SkillMenuElement;
+                    skl.OnEnter();
                     break;
                 default:
                     //Asumimos que estamos en el Menú principal
@@ -187,6 +207,8 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    #region "Interface"
+
     void UpdateWindowsIndex()
     {
         for (int i = 0; i < MainOptions.Length; i++)
@@ -203,16 +225,20 @@ public class CombatManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Populamos los ataques con los nombres de los ataques
+    /// </summary>
+    /// <param name="AttackNames"></param>
     public void PopulateAttacks(params string[] AttackNames)
     {
-       if(AttackNames.Length > CombatOptions.Length)
+        if (AttackNames.Length > CombatOptions.Length)
         {
             Debug.LogError("Se reciben más ataques de los recomendados. Se truncarán los resultados");
         }
 
-       for (int i = 0; i < CombatOptions.Length; i++)
+        for (int i = 0; i < CombatOptions.Length; i++)
         {
-            if(i < AttackNames.Length)
+            if (i < AttackNames.Length)
             {
                 //Hay un ataque: lo rellenamos
                 CombatOptions[i].SetName(AttackNames[i]);
@@ -226,5 +252,71 @@ public class CombatManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Si le mandamos ataques, los convertimos a strings para poder popularlo
+    /// </summary>
+    /// <param name="AttackNames"></param>
+    public void PopulateAttacks(params Pokemon.Skill[] AttackNames)
+    {
+        string[] skillNames = new string[AttackNames.Length];
+        for (int i = 0; i < AttackNames.Length; i++)
+        {
+            skillNames[i] = AttackNames[i].Name;
+        }
+        PopulateAttacks(skillNames);
+    }
 
+    void UpdateCurrentPokemonWindow(bool bPlayerPokemon)
+    {
+        if (bPlayerPokemon)
+        {
+            //Desbloquear Input.
+            PopulateAttacks(_currentPokemon.Skills);
+            MainMenu.SetActive(true);
+            AttackMenu.SetActive(true);
+
+        }
+        else
+        {
+            //Bloquear Input.
+            MainMenu.SetActive(false);
+            AttackMenu.SetActive(false);
+        }
+    }
+
+    #endregion
+
+    #region "Combat"
+
+    public void InitializeCombat(Pokemon[] pokemonList)
+    {
+        _pokemonList = pokemonList;
+
+        PokemonPlayer.sprite = _pokemonList[0].Images[0];
+        PokemonEnemy.sprite = _pokemonList[1].Images[1];
+    }
+
+
+    void NextTurn()
+    {
+        _currentPokemonIndex = _currentPokemonIndex == 0 ? 1 : 0;
+        _currentPokemon = _pokemonList[_currentPokemonIndex];
+
+        UpdateCurrentPokemonWindow(_currentPokemonIndex == 0);
+
+        if (_currentPokemonIndex == 1)
+        {
+            int rndIndex = Random.Range(0, _currentPokemon.Skills.Length);
+            OnSkillUsed(rndIndex);
+        }
+    }
+
+    public void OnSkillUsed(int index)
+    {
+        Pokemon objetivo = _pokemonList[_currentPokemonIndex == 0 ? 1 : 0];
+        objetivo.SetDamage(_currentPokemon, _currentPokemon.Skills[index]);
+        Invoke("NextTurn", 2);
+    }
+
+    #endregion
 }

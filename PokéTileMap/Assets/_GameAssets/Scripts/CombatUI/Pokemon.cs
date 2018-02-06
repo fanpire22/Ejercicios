@@ -5,19 +5,33 @@ using UnityEngine;
 public class Pokemon
 {
 
+    public class Skill
+    {
+        public readonly string Name;
+        public readonly int Damage;
+        public readonly GameObject ParticleEffect;
+
+        public Skill(string name, int damage, GameObject particleEffect)
+        {
+            Name = name;
+            Damage = damage;
+            ParticleEffect = particleEffect;
+        }
+    }
+
     public readonly Sprite[] Images; //Elemento 0 es la espalda, el 1 de frente
 
     public readonly string Name;
 
     public readonly int totalHP;
-    public int currentHP { get; private set; }
+    public int CurrentHP { get; private set; }
 
     public readonly int Atk;
     public readonly int Def;
 
     public int Level { get; private set; }
 
-
+    public readonly Skill[] Skills;
 
     public Pokemon(Sprite back, Sprite front, string name, int totalHP, int Atk, int Def, int Level)
     {
@@ -27,7 +41,7 @@ public class Pokemon
 
         this.Name = name;
         this.totalHP = totalHP;
-        this.currentHP = totalHP;
+        this.CurrentHP = totalHP;
         this.Atk = Atk;
         this.Def = Def;
         this.Level = Level;
@@ -37,11 +51,43 @@ public class Pokemon
         this.Images = sprites;
         this.Name = name;
         this.totalHP = totalHP;
-        this.currentHP = totalHP;
+        this.CurrentHP = totalHP;
         this.Atk = Atk;
         this.Def = Def;
         this.Level = Level;
     }
 
+    /// <summary>
+    /// Tiramos contra la CA del pokémon (sí, la CA xD)
+    /// </summary>
+    /// <param name="enemy"></param>
+    /// <param name="skillUsed"></param>
+    public void SetDamage(Pokemon enemy, Skill skillUsed)
+    {
+       int tirada = Random.Range(1, 21);
+        if (tirada == 1)
+        {
+            //Pifia!
+        }
+        else if (tirada == 20)
+        {
+            //Crítico!
+            CurrentHP -= skillUsed.Damage * 2;
+
+        }else if ((tirada + enemy.Atk) >= this.Def){
+            //Nos han dado
+            CurrentHP -= skillUsed.Damage;
+        }
+        else
+        {
+            //Han fallado
+        }
+
+        if(CurrentHP <= 0)
+        {
+            //La diñamos
+        }
+
+    }
 
 }

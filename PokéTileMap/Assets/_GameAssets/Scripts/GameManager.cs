@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
 
     [SerializeField] TransitionEvents _transitionE;
+    [SerializeField] CombatManager _combatManager;
 
     public CharacterMovement CharacterRef { private set; get; }
 
@@ -26,5 +27,10 @@ public class GameManager : MonoBehaviour {
     public void OnFinishedAnimation()
     {
         _currentTransitionT.OnTransitionEnded();
+    }
+
+    public CombatManager GetCombatManager()
+    {
+        return _combatManager;
     }
 }

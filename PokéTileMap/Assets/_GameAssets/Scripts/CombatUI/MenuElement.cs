@@ -15,7 +15,7 @@ public class MenuElement : MonoBehaviour
         _name = GetComponentInChildren<Text>();
     }
 
-    public void SetActive(bool isActive)
+    public virtual void SetActive(bool isActive)
     {
         _image.enabled = isActive;
     }

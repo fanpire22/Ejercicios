@@ -6,12 +6,12 @@ using UnityEngine.UI;
 public class AttackInfo : MonoBehaviour {
 
     [SerializeField] Text txtName;
-    [SerializeField] Text txtPP;
+    [SerializeField] Text txtAttack;
     
-    public void UpdateAttack(string Name, string MaxPP, string MinPP)
+    public void UpdateAttack(string Name, string Attack)
     {
         txtName.text = Name;
-        txtPP.text = string.Format("{0} / {1}", MinPP, MaxPP);
+        txtAttack.text = string.Format(Attack);
     }
 
 }
