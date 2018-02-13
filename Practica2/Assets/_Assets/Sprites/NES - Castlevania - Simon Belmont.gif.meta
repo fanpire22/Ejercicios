@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: b7fdf0ddf13e4c5488e32fe9da4598b8
-timeCreated: 1518466273
+timeCreated: 1518544418
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,20 @@ TextureImporter:
     21300014: Whip0
     21300016: Whip1
     21300018: Whip2
+    21300020: Hit
+    21300022: Dead
+    21300024: Enter
+    21300026: CrouchWhip0
+    21300028: CrouchWhip1
+    21300030: CrouchWhip2
+    21300032: Jump1
+    21300034: Jump0
+    21300036: JumpThrow0
+    21300038: JumpThrow1
+    21300040: JumpThrow2
+    21300042: JumpWhip0
+    21300044: JumpWhip1
+    21300046: JumpWhip2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -157,7 +171,7 @@ TextureImporter:
         x: 81
         y: 646
         width: 16
-        height: 31
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -171,7 +185,7 @@ TextureImporter:
         x: 108
         y: 646
         width: 16
-        height: 31
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -185,7 +199,7 @@ TextureImporter:
         x: 135
         y: 646
         width: 16
-        height: 31
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,7 +213,7 @@ TextureImporter:
         x: 164
         y: 646
         width: 16
-        height: 31
+        height: 32
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -213,9 +227,9 @@ TextureImporter:
         x: 61
         y: 603
         width: 24
-        height: 31
+        height: 32
       alignment: 9
-      pivot: {x: 0.23593013, y: 0.016355453}
+      pivot: {x: 0.23, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -227,9 +241,9 @@ TextureImporter:
         x: 105
         y: 603
         width: 24
-        height: 31
+        height: 32
       alignment: 9
-      pivot: {x: 0.394372, y: 0.016355453}
+      pivot: {x: 0.4, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,9 +255,9 @@ TextureImporter:
         x: 153
         y: 603
         width: 24
-        height: 31
+        height: 32
       alignment: 9
-      pivot: {x: 0.4788742, y: 0.020444809}
+      pivot: {x: 0.49, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -255,9 +269,9 @@ TextureImporter:
         x: 36
         y: 562
         width: 34
-        height: 31
+        height: 32
       alignment: 9
-      pivot: {x: 0.19057217, y: 0.05431735}
+      pivot: {x: 0.2, y: 0.04}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -269,9 +283,9 @@ TextureImporter:
         x: 85
         y: 563
         width: 32
-        height: 31
+        height: 32
       alignment: 9
-      pivot: {x: 0.17519403, y: 0.021606445}
+      pivot: {x: 0.181, y: 0.01}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -283,9 +297,205 @@ TextureImporter:
         x: 136
         y: 564
         width: 44
-        height: 31
+        height: 32
       alignment: 9
-      pivot: {x: 0.76503026, y: 0.0256958}
+      pivot: {x: 0.765, y: 0.01}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Hit
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 646
+        width: 20
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Dead
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 646
+        width: 32
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enter
+      rect:
+        serializedVersion: 2
+        x: 324
+        y: 646
+        width: 18
+        height: 32
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CrouchWhip0
+      rect:
+        serializedVersion: 2
+        x: 21
+        y: 323
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.4844824, y: 0.26620674}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CrouchWhip1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 327
+        width: 35
+        height: 32
+      alignment: 9
+      pivot: {x: 0.527742, y: 0.020026207}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: CrouchWhip2
+      rect:
+        serializedVersion: 2
+        x: 131
+        y: 326
+        width: 44
+        height: 32
+      alignment: 9
+      pivot: {x: 0.9884779, y: 0.016407013}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Jump1
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 646
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Jump0
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 646
+        width: 15
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpThrow0
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 602
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.317, y: 0.27}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpThrow1
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 602
+        width: 16
+        height: 32
+      alignment: 9
+      pivot: {x: 0.473, y: 0.27}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpThrow2
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 602
+        width: 22
+        height: 32
+      alignment: 9
+      pivot: {x: 0.611, y: 0.264}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpWhip0
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 562
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.24, y: 0.265}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpWhip1
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 562
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.23335743, y: 0.26137352}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: JumpWhip2
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 563
+        width: 44
+        height: 32
+      alignment: 9
+      pivot: {x: 0.8069708, y: 0.2668724}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
