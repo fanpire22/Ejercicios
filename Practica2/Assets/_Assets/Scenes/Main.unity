@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 163124689}
   - component: {fileID: 163124688}
   - component: {fileID: 163124687}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - component: {fileID: 261870218}
   - component: {fileID: 261870217}
   - component: {fileID: 261870216}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 322165823}
   - component: {fileID: 322165824}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ramp1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -430,7 +430,7 @@ GameObject:
   m_Component:
   - component: {fileID: 640946701}
   - component: {fileID: 640946702}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -505,7 +505,7 @@ GameObject:
   - component: {fileID: 937749535}
   - component: {fileID: 937749534}
   - component: {fileID: 937749533}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 985339125}
   - component: {fileID: 985339124}
   - component: {fileID: 985339123}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Platform2 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,6 +742,7 @@ GameObject:
   - component: {fileID: 1028791566}
   - component: {fileID: 1028791568}
   - component: {fileID: 1028791567}
+  - component: {fileID: 1028791569}
   m_Layer: 0
   m_Name: SimonSimon
   m_TagString: Untagged
@@ -857,7 +858,25 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &1028791569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028791563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3aeb8282eaace48b9596cfbba6cdf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speedMovement: 4
+  bDrawDebug: 0
+  _jumpingLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  _detectionRadius: 0.1
+  _jumpForce: 6
 --- !u!1 &1550999625
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,7 +886,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1550999627}
   - component: {fileID: 1550999626}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -923,7 +942,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1667126254}
   - component: {fileID: 1667126255}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Floor (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -996,7 +1015,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1762346829}
   - component: {fileID: 1762346830}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ramp0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
