@@ -2,20 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StoreWindow : MonoBehaviour
 {
-    [System.Serializable]
-    public struct FStoreItem
-    {
-        Sprite sprite;
-        string name;
-        int amount;
-    }
-
-    static bool bOpenStore;
+    [SerializeField] RectTransform ScrollViewContent;
+    [SerializeField] RectTransform NoItems;
+    [SerializeField] Button CloseButton;
+    private static bool bOpenStore;
 
     //Singleton
+    static System.Action OwnerCallback;
+
     private static StoreWindow _instance;
     public static StoreWindow Instance
     {
@@ -23,7 +21,7 @@ public class StoreWindow : MonoBehaviour
         {
             if (_instance == null)
             {
-                StoreWindow.LoadStore();
+                //StoreWindow.LoadStore();
                 return _instance;
             }
             return _instance;
@@ -37,14 +35,47 @@ public class StoreWindow : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        CloseButton.onClick.AddListener(() => unloadStore());
+        OwnerCallback.Invoke();
+    }
+
+    /// <summary>
+    /// inicialización serializada de objetos de la tienda
+    /// </summary>
+    /// <param name="items"></param>
+    public void InitializeStore(params Item[] items)
+    {
+        if (items.Length > 0)
+        {
+            NoItems.gameObject.SetActive(false);
+
+            StoreItem reference = Resources.Load<StoreItem>("HUD/StoreItem");
+            for (int i = 0; i < items.Length; i++)
+            {
+                Item CurrentItemStore = items[i];
+                StoreItem instantiated = GameObject.Instantiate(reference);
+                instantiated.Initialize(
+                    CurrentItemStore.Icon,
+                    CurrentItemStore.Name,
+                    CurrentItemStore.Cost);
+                instantiated.transform.SetParent(ScrollViewContent, false);
+                instantiated.transform.localScale = Vector3.one;
+
+            }
+        }
+        else
+        {
+            NoItems.gameObject.SetActive(true);
+        }
     }
 
     /// <summary>
     /// Función que abre una escena aditiva de tienda
     /// </summary>
     /// <returns>El estado de la escena</returns>
-    public static bool LoadStore()
+    public static bool LoadStore(System.Action Callback)
     {
+        OwnerCallback = Callback;
         if (!bOpenStore)
         {
             SceneManager.LoadScene("Store", LoadSceneMode.Additive);

@@ -1,20 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 using UnityEngine.UI;
 
-public class StoreItem : MonoBehaviour {
-
-    [SerializeField] Image _icon;
+public class StoreItem : MonoBehaviour
+{
+    [SerializeField] Image _image;
     [SerializeField] Text _name;
-    [SerializeField] Text _cost;
     [SerializeField] Button _buyButton;
 
-    public void Initialize(Sprite Image, string Name, int Cost)
+    public void Initialize(Sprite image, string name, int cost /*,Delegado*/)
     {
-        _icon.sprite = Image;
-        _name.text = Name;
-        _name.text = string.Format("{0}G",Cost);
+        _image.sprite = image;
+        _name.text = string.Format("{0} <color=yellow>{1}G</color>",name, cost); 
     }
-
 }
