@@ -12,6 +12,7 @@ public class SellerTemplate : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && !bOpenStore)
         {
+
             bOpenStore = StoreWindow.LoadStore(StoreLoaded);
         }
 
@@ -23,7 +24,8 @@ public class SellerTemplate : MonoBehaviour
 
     private void StoreLoaded()
     {
-        StoreWindow.Instance.InitializeStore(items);
+        Inventory inventario = GameManager.instance.getSimonSimon().GetInventory();
+        StoreWindow.Instance.InitializeStore(inventario.Purchase, items);
     }
 
 }

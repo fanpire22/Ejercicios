@@ -43,7 +43,7 @@ public class StoreWindow : MonoBehaviour
     /// inicialización serializada de objetos de la tienda
     /// </summary>
     /// <param name="items"></param>
-    public void InitializeStore(params Item[] items)
+    public void InitializeStore(System.Action<Item> onTryPurchaseItemCallBack, params Item[] items)
     {
         if (items.Length > 0)
         {
@@ -54,10 +54,7 @@ public class StoreWindow : MonoBehaviour
             {
                 Item CurrentItemStore = items[i];
                 StoreItem instantiated = GameObject.Instantiate(reference);
-                instantiated.Initialize(
-                    CurrentItemStore.Icon,
-                    CurrentItemStore.Name,
-                    CurrentItemStore.Cost);
+                instantiated.Initialize(CurrentItemStore, onTryPurchaseItemCallBack);
                 instantiated.transform.SetParent(ScrollViewContent, false);
                 instantiated.transform.localScale = Vector3.one;
 

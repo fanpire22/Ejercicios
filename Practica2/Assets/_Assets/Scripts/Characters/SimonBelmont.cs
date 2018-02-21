@@ -9,6 +9,7 @@ public class SimonBelmont : BaseCharacter
     private LayerMask _jumpingLayer;
     [SerializeField] private float _detectionRadius;
     [SerializeField] private float _jumpForce;
+    [SerializeField] Inventory _inventory;
 
     private float _horizontalAxis;
     private bool _bJumpPressed;
@@ -16,6 +17,11 @@ public class SimonBelmont : BaseCharacter
     private bool _bInAir;
 
     private Collider2D[] _footDetection = new Collider2D[5];
+
+    public Inventory GetInventory()
+    {
+        return _inventory;
+    }
 
     void UpdateJump()
     {

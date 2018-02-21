@@ -9,7 +9,18 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Create Item", menuName = "Items", order = 0)]
 public class Item : ScriptableObject {
 
+    public int ID;
     public Sprite Icon;
     public string Name;
     public int Cost;
+
+    public static bool operator ==(Item a, Item b)
+    {
+        return a.ID == b.ID;
+    }
+
+    public static bool operator !=(Item a, Item b)
+    {
+        return a.ID != b.ID;
+    }
 }

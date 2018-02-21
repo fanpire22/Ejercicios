@@ -7,6 +7,11 @@ public class GameManager : MonoBehaviour {
     [Header("References")]
     [SerializeField] SimonBelmont _simonSimon;
 
+    public SimonBelmont getSimonSimon()
+    {
+        return _simonSimon;
+    }
+
     //SingleTonTORRON
     public static GameManager instance { get; private set; }
 
