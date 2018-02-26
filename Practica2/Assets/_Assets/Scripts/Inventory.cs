@@ -8,7 +8,8 @@ public class Inventory : MonoBehaviour
 
     Dictionary<Item, int> Items;
 
-    int Gold;
+    private int Gold;
+    public int Coins{ get { return Gold; } private set { } }
 
 
     private void Awake()
@@ -50,6 +51,7 @@ public class Inventory : MonoBehaviour
         {
             RemoveGold(item.Cost);
             AddItem(item);
+            item.ApplyEffects();
         }
     }
 

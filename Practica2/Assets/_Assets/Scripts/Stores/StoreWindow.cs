@@ -9,7 +9,9 @@ public class StoreWindow : MonoBehaviour
     [SerializeField] RectTransform ScrollViewContent;
     [SerializeField] RectTransform NoItems;
     [SerializeField] Button CloseButton;
+    [SerializeField] Text txtCoins;
     private static bool bOpenStore;
+    private Inventory inventario;
 
     //Singleton
     static System.Action OwnerCallback;
@@ -19,10 +21,9 @@ public class StoreWindow : MonoBehaviour
     {
         get
         {
-            if (_instance == null)
+            if (!_instance)
             {
                 //StoreWindow.LoadStore();
-                return _instance;
             }
             return _instance;
         }
@@ -37,6 +38,12 @@ public class StoreWindow : MonoBehaviour
         _instance = this;
         CloseButton.onClick.AddListener(() => unloadStore());
         OwnerCallback.Invoke();
+        inventario = GameManager.instance.getSimonSimon().GetInventory();
+    }
+
+    private void Update()
+    {
+        txtCoins.text = string.Format("{0}G", inventario.Coins.ToString());
     }
 
     /// <summary>

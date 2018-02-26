@@ -17,7 +17,13 @@ public class SimonBelmont : BaseCharacter
     private bool _bInAir;
 
     private Collider2D[] _footDetection = new Collider2D[5];
+#if UNITY_EDITOR
+    private void Start()
+    {
 
+        _inventory.AddGold(5000);
+    }
+#endif
     public Inventory GetInventory()
     {
         return _inventory;
@@ -65,6 +71,7 @@ public class SimonBelmont : BaseCharacter
         {
             spr.flipX = _horizontalAxis > 0;
         }
+
     }
 
 

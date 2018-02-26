@@ -1052,6 +1052,7 @@ MonoBehaviour:
   ScrollViewContent: {fileID: 1599065113}
   NoItems: {fileID: 682711110}
   CloseButton: {fileID: 456990651}
+  txtCoins: {fileID: 728010413}
 --- !u!1 &1599065112
 GameObject:
   m_ObjectHideFlags: 0

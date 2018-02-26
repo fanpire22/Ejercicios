@@ -1,17 +1,15 @@
 fileFormatVersion: 2
-guid: 706a4dd21e8678749afb3131f5672237
-timeCreated: 1519672982
+guid: 92a11e49bc540694dad865cb52e25b98
+timeCreated: 1518462658
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Boomerang0
-    21300002: Boomerang1
-    21300004: Boomerang2
-    21300006: Gold1
-    21300008: Gold2
-    21300010: Gold3
-    21300012: Dagger
-    21300014: Axe
+    21300000: 90095_0
+    21300002: 90095_1
+    21300004: 90095_2
+    21300006: 90095_3
+    21300008: 90095_4
+    21300010: 90095_5
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -39,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -1
     wrapU: 1
@@ -53,8 +51,8 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 35
+  spriteBorder: {x: 0, y: 16, z: 0, w: 0}
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -149,55 +147,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boomerang0
+      name: 90095_0
       rect:
         serializedVersion: 2
-        x: 265
-        y: 224
-        width: 15
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5207296, y: 0.47223553}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Boomerang1
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 224
-        width: 15
-        height: 14
-      alignment: 9
-      pivot: {x: 0.4689026, y: 0.48889378}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Boomerang2
-      rect:
-        serializedVersion: 2
-        x: 315
-        y: 224
-        width: 15
-        height: 14
-      alignment: 9
-      pivot: {x: 0.52591145, y: 0.5222114}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Gold1
-      rect:
-        serializedVersion: 2
-        x: 345
-        y: 140
-        width: 14
-        height: 15
+        x: 0
+        y: 16
+        width: 55
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,13 +161,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gold2
+      name: 90095_1
       rect:
         serializedVersion: 2
-        x: 365
-        y: 140
-        width: 14
-        height: 15
+        x: 55
+        y: 16
+        width: 44
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 44, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 90095_2
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 16
+        width: 28
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 28, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 90095_3
+      rect:
+        serializedVersion: 2
+        x: 127
+        y: 16
+        width: 13
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -219,13 +203,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gold3
+      name: 90095_4
       rect:
         serializedVersion: 2
-        x: 385
-        y: 140
-        width: 14
-        height: 15
+        x: 140
+        y: 16
+        width: 31
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -233,34 +217,64 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Dagger
+      name: 90095_5
       rect:
         serializedVersion: 2
-        x: 177
-        y: 228
-        width: 17
-        height: 9
+        x: 171
+        y: 16
+        width: 39
+        height: 54
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
-    - serializedVersion: 2
-      name: Axe
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 224
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    outline: []
+    outline:
+    - - {x: -5, y: -20}
+      - {x: -5, y: -35}
+      - {x: 73, y: -35}
+      - {x: 75, y: -32}
+      - {x: 75, y: -20}
+    - - {x: 78, y: -20}
+      - {x: 78, y: -35}
+      - {x: 101, y: -35}
+      - {x: 102, y: -32}
+      - {x: 102, y: -22}
+      - {x: 100, y: -20}
+    - - {x: -98, y: -19}
+      - {x: -102, y: -19}
+      - {x: -105, y: -24}
+      - {x: -105, y: -34}
+      - {x: -91, y: -34}
+      - {x: -91, y: -27}
+      - {x: -94, y: -21}
+    - - {x: -16, y: -22}
+      - {x: -24, y: -20}
+      - {x: -26, y: -20}
+      - {x: -21, y: -20}
+      - {x: -16, y: -19}
+      - {x: 1, y: -25}
+      - {x: 61, y: -30}
+      - {x: 105, y: -22}
+      - {x: 105, y: 29}
+      - {x: 99, y: 35}
+      - {x: -103, y: 35}
+      - {x: -105, y: 27}
+      - {x: -105, y: -10}
+      - {x: -95, y: -17}
+      - {x: -85, y: -20}
+      - {x: -70, y: -20}
+      - {x: -59, y: -15}
+      - {x: -69, y: -22}
+      - {x: -79, y: -20}
+      - {x: -87, y: -20}
+      - {x: -90, y: -23}
+      - {x: -90, y: -31}
+      - {x: -89, y: -34}
+      - {x: -6, y: -34}
+      - {x: -7, y: -23}
+      - {x: -10, y: -22}
     physicsShape: []
   spritePackingTag: 
   userData: 

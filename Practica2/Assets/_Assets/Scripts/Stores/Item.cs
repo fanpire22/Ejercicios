@@ -23,4 +23,9 @@ public class Item : ScriptableObject {
     {
         return a.ID != b.ID;
     }
+
+    public virtual void ApplyEffects()
+    {
+
+    }
 }
