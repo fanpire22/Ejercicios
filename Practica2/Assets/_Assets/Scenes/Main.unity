@@ -1022,8 +1022,10 @@ GameObject:
   - component: {fileID: 857986330}
   - component: {fileID: 857986329}
   - component: {fileID: 857986331}
-  m_Layer: 0
-  m_Name: NES - Castlevania - Bosses_0
+  - component: {fileID: 857986332}
+  - component: {fileID: 857986333}
+  m_Layer: 9
+  m_Name: Pedorrusa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,7 +1082,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 857986328}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.37, y: 17.42, z: 0}
+  m_LocalPosition: {x: -5.982, y: 1.152, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1100,6 +1102,35 @@ MonoBehaviour:
   items:
   - {fileID: 11400000, guid: 357a8b5e770de9d4c81a0e1bf537e6c8, type: 2}
   - {fileID: 11400000, guid: facaf1833ad4430408e2fc1d0a749f97, type: 2}
+--- !u!114 &857986332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 857986328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30e6d44d47f6844d88114f244c3d418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Resistances: 
+  Weakneses: 
+  MaxHealth: 1
+--- !u!58 &857986333
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 857986328}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.66
 --- !u!1 &916424755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,6 +1422,7 @@ GameObject:
   - component: {fileID: 1028791567}
   - component: {fileID: 1028791569}
   - component: {fileID: 1028791570}
+  - component: {fileID: 1028791571}
   m_Layer: 0
   m_Name: SimonSimon
   m_TagString: Player
@@ -1537,6 +1569,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca86d961ca4edb64ea6e20f08c1e6437, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1028791571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1028791563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e30e6d44d47f6844d88114f244c3d418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Resistances: 
+  Weakneses: 04000000
+  MaxHealth: 6
 --- !u!1 &1039199025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1546,6 +1592,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1039199027}
   - component: {fileID: 1039199026}
+  - component: {fileID: 1039199029}
+  - component: {fileID: 1039199028}
   m_Layer: 0
   m_Name: Axe
   m_TagString: Untagged
@@ -1604,12 +1652,42 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1039199025}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.64227414, y: 0.8649473, z: 0}
+  m_LocalPosition: {x: -0.64227414, y: 1.33, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1039199028
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1039199025}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.0093022585}
+  serializedVersion: 2
+  m_Radius: 0.1739757
+--- !u!114 &1039199029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1039199025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93d0016993bd56b4585efc20d6806836, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerDetection:
+    serializedVersion: 2
+    m_Bits: 0
+  bCanDamageOwner: 0
 --- !u!1 &1290581712
 GameObject:
   m_ObjectHideFlags: 0
@@ -2091,6 +2169,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1603037499}
   - component: {fileID: 1603037498}
+  - component: {fileID: 1603037500}
+  - component: {fileID: 1603037501}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -2149,12 +2229,53 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1603037497}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.64227414, y: 0.8649473, z: 0}
+  m_LocalPosition: {x: 2.274, y: 1.101, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &1603037500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603037497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54254157ac629d443a97fe064ea58263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerDetection:
+    serializedVersion: 2
+    m_Bits: 512
+  bCanDamageOwner: 0
+  speed: 10
+--- !u!61 &1603037501
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1603037497}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.0061511993}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.4857143, y: 0.25714287}
+    newSize: {x: 0.6, y: 0.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4857143, y: 0.12181407}
+  m_EdgeRadius: 0
 --- !u!1 &1617294045
 GameObject:
   m_ObjectHideFlags: 0

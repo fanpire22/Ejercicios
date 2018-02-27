@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 
 /// <summary>
@@ -18,11 +19,12 @@ public enum EDamageTypes
     Bludgeoning
 }
 
+
 public class HealthManager : MonoBehaviour
 {
 
-    [SerializeField] List<EDamageTypes> Resistances;
-    [SerializeField] List<EDamageTypes> Weakneses;
+    [SerializeField] Dictionary<EDamageTypes, float> Resistances;
+    [SerializeField] Dictionary<EDamageTypes, float> Weakneses;
     [SerializeField] int MaxHealth;
 
     public int CurrentHealth { get; private set; }
@@ -39,11 +41,24 @@ public class HealthManager : MonoBehaviour
         CurrentHealth = MaxHealth;
     }
 
-    public void Damage(int Damage)
+    public void Damage(WeaponBase weapon)
     {
+        foreach (FDamageWeapon dmg in weapon.Damages)
+        {
+            if (Resistances.ContainsKey(dmg.type))
+            {
+                //Somos resistentes a ese tipo de daño: Reducimos el daño
+               CurrentHealth -= Mathf.Max(0,Mathf.FloorToInt(dmg.amount * (1 - Resistances[dmg.type])));
+            }
+            else if (Weakneses.ContainsKey(dmg.type))
+            {
 
+                //Somos débiles a ese tipo de daño: Reducimos el daño. No se puede ser resistente y débil: La resistencia anula la debilidad
+                CurrentHealth -= Mathf.Max(0, Mathf.FloorToInt(dmg.amount * (1 + Resistances[dmg.type])));
+            }
+        }
     }
-
+    
     public void Heal(int Healing)
     {
 

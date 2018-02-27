@@ -71,7 +71,7 @@ public class SimonBelmont : BaseCharacter
         {
             spr.flipX = _horizontalAxis > 0;
         }
-
+        
     }
 
 
