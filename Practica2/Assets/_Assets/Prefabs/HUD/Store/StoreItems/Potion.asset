@@ -11,6 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a12f1826a363e44a003120e111aa3a, type: 3}
   m_Name: Potion
   m_EditorClassIdentifier: 
+  ID: 4
   Icon: {fileID: 21300000, guid: 519fb4f95f3e1a041bcd11d5a7e9b839, type: 3}
   Name: Potion
   Cost: 100

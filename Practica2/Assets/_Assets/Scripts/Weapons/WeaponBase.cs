@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public struct FDamageWeapon
 {
     public EDamageTypes type;
@@ -10,7 +11,7 @@ public struct FDamageWeapon
 
 public class WeaponBase : MonoBehaviour
 {
-    public List<FDamageWeapon> Damages { get; protected set; }
+    public List<FDamageWeapon> damages;
     [SerializeField] LayerMask LayerDetection;
     [SerializeField] bool bCanDamageOwner;
     [SerializeField] float LifeDuration = 10f;

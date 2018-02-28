@@ -7,6 +7,7 @@ using System.Linq;
 /// <summary>
 /// List of available damage types
 /// </summary>
+[System.Serializable]
 public enum EDamageTypes
 {
     Fire,
@@ -19,13 +20,21 @@ public enum EDamageTypes
     Bludgeoning
 }
 
+[System.Serializable]
+public struct SResistances
+{
+    public EDamageTypes type;
+    public float value;
+}
 
 public class HealthManager : MonoBehaviour
 {
-
-    [SerializeField] Dictionary<EDamageTypes, float> Resistances;
-    [SerializeField] Dictionary<EDamageTypes, float> Weakneses;
+    [SerializeField] List<SResistances> resistances;
+    [SerializeField] List<SResistances> weakneses;
     [SerializeField] int MaxHealth;
+
+    private Dictionary<EDamageTypes, float> Resistances;
+    private Dictionary<EDamageTypes, float> Weakneses;
 
     public int CurrentHealth { get; private set; }
     public bool isAlive
@@ -39,11 +48,27 @@ public class HealthManager : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = MaxHealth;
+        Resistances = new Dictionary<EDamageTypes, float>();
+        Weakneses = new Dictionary<EDamageTypes, float>();
+        foreach (SResistances res in resistances)
+        {
+            if(!Resistances.ContainsKey(res.type))
+            {
+                Resistances.Add(res.type, res.value);
+            }
+        }
+        foreach (SResistances wek in weakneses)
+        {
+            if (!Weakneses.ContainsKey(wek.type))
+            {
+                Weakneses.Add(wek.type, wek.value);
+            }
+        }
     }
 
     public void Damage(WeaponBase weapon)
     {
-        foreach (FDamageWeapon dmg in weapon.Damages)
+        foreach (FDamageWeapon dmg in weapon.damages)
         {
             if (Resistances.ContainsKey(dmg.type))
             {

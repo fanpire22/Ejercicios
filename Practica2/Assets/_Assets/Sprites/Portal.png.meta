@@ -1,18 +1,12 @@
 fileFormatVersion: 2
-guid: 706a4dd21e8678749afb3131f5672237
-timeCreated: 1519842514
+guid: 2c671e2bc01786347a796cea02badd1f
+timeCreated: 1519847690
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Boomerang0
-    21300002: Boomerang1
-    21300004: Boomerang2
-    21300006: Gold1
-    21300008: Gold2
-    21300010: Gold3
-    21300012: Dagger
-    21300014: Axe
-    21300016: Whip
+    21300000: Portal_0
+    21300002: Portal_1
+    21300004: Portal_2
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -55,7 +49,7 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 35
+  spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
   spriteTessellationDetail: -1
@@ -150,125 +144,41 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Boomerang0
+      name: Portal_0
       rect:
         serializedVersion: 2
-        x: 265
-        y: 224
-        width: 15
-        height: 14
-      alignment: 9
-      pivot: {x: 0.5207296, y: 0.47223553}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Boomerang1
-      rect:
-        serializedVersion: 2
-        x: 290
-        y: 224
-        width: 15
-        height: 14
-      alignment: 9
-      pivot: {x: 0.4689026, y: 0.48889378}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Boomerang2
-      rect:
-        serializedVersion: 2
-        x: 315
-        y: 224
-        width: 15
-        height: 14
-      alignment: 9
-      pivot: {x: 0.52591145, y: 0.5222114}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Gold1
-      rect:
-        serializedVersion: 2
-        x: 345
-        y: 140
-        width: 14
-        height: 15
+        x: 17
+        y: 206
+        width: 60
+        height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gold2
+      name: Portal_1
       rect:
         serializedVersion: 2
-        x: 365
-        y: 140
-        width: 14
-        height: 15
+        x: 108
+        y: 206
+        width: 66
+        height: 63
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Gold3
+      name: Portal_2
       rect:
         serializedVersion: 2
-        x: 385
-        y: 140
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Dagger
-      rect:
-        serializedVersion: 2
-        x: 177
-        y: 228
-        width: 17
-        height: 9
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Axe
-      rect:
-        serializedVersion: 2
-        x: 225
-        y: 224
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Whip
-      rect:
-        serializedVersion: 2
-        x: 44
-        y: 217
-        width: 17
-        height: 17
+        x: 208
+        y: 203
+        width: 64
+        height: 63
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

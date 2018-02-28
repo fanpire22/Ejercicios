@@ -10,6 +10,7 @@ public class Boomerang : WeaponBase {
     Vector3 returnPoint;
 
     bool bArrived = false;
+    float overrideDirection = 1;
 
     protected override void Update()
     {
@@ -17,8 +18,9 @@ public class Boomerang : WeaponBase {
         {
             //Volvemos
             bArrived = true;
-            
+            overrideDirection = -1;
         }
+        transform.position += Vector3.right * _direction * overrideDirection * speed * Time.deltaTime;
     }
 
     /// <summary>

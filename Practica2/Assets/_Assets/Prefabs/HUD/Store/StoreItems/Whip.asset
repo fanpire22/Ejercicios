@@ -8,10 +8,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5475455c2e5f64a4e97691ae899ca6c7, type: 3}
-  m_Name: NonGravity
+  m_Script: {fileID: 11500000, guid: 22a12f1826a363e44a003120e111aa3a, type: 3}
+  m_Name: Whip
   m_EditorClassIdentifier: 
-  ID: 5
-  Icon: {fileID: 21300032, guid: 519fb4f95f3e1a041bcd11d5a7e9b839, type: 3}
-  Name: NonGravity
-  Cost: 1
+  ID: 0
+  Icon: {fileID: 21300016, guid: 706a4dd21e8678749afb3131f5672237, type: 3}
+  Name: Whip
+  Cost: 0

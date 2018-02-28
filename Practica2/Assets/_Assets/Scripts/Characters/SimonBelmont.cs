@@ -10,11 +10,19 @@ public class SimonBelmont : BaseCharacter
     [SerializeField] private float _detectionRadius;
     [SerializeField] private float _jumpForce;
     [SerializeField] Inventory _inventory;
+    [Tooltip("0: Látigo, 1: Daga, 2: Boomerang, 3: Hacha")]
+    [SerializeField] WeaponBase[] _weaponList;
+    [SerializeField] Transform _weaponSource;
+    [SerializeField] float _attackRate;
+
+    int _currentWeapon;
 
     private float _horizontalAxis;
     private bool _bJumpPressed;
     private bool _bAttackPressed;
     private bool _bInAir;
+
+    float _nextTimeCanAttack;
 
     private Collider2D[] _footDetection = new Collider2D[5];
 #if UNITY_EDITOR
@@ -41,7 +49,6 @@ public class SimonBelmont : BaseCharacter
         {
             rig.velocity = new Vector2(rig.velocity.x, _jumpForce);
         }
-
     }
 
     protected override void Update()
@@ -71,7 +78,50 @@ public class SimonBelmont : BaseCharacter
         {
             spr.flipX = _horizontalAxis > 0;
         }
-        
+
+        if (_bAttackPressed && Time.time > _nextTimeCanAttack)
+        {
+            _nextTimeCanAttack = Time.time + _attackRate;
+            base.ani.SetInteger("Weapon", _currentWeapon);
+            base.ani.SetTrigger("Attack");
+
+            float direction = (spr.flipX ? 1 : -1);
+
+            WeaponBase baseW = GameObject.Instantiate(_weaponList[_currentWeapon]);
+            baseW.Initialize(gameObject, direction);
+            baseW.transform.position = _weaponSource.transform.position + Vector3.right * 0.5f * direction;
+
+            //switch (_currentWeapon)
+            //{
+            //    case 0:
+            //        //Whip
+            //        break;
+            //    case 1:
+            //        //Dagger
+            //        break;
+            //    case 2:
+            //        //Boomerang
+            //        break;
+            //    case 3:
+            //        //Axe
+            //        break;
+            //    default:
+            //        break;
+            //}
+        }
+        if (!_bAttackPressed && Input.GetKeyDown(KeyCode.Alpha1)) ChangeWeapon(0);
+        if (!_bAttackPressed && Input.GetKeyDown(KeyCode.Alpha2)) ChangeWeapon(1);
+        if (!_bAttackPressed && Input.GetKeyDown(KeyCode.Alpha3)) ChangeWeapon(2);
+        if (!_bAttackPressed && Input.GetKeyDown(KeyCode.Alpha4)) ChangeWeapon(3);
+    }
+
+    private void ChangeWeapon(int index)
+    {
+        if (index == 0 || _inventory.HasItem((byte)index))
+        {
+            _currentWeapon = index;
+
+        }
     }
 
 
