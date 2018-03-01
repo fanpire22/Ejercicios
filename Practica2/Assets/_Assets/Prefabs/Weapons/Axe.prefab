@@ -70,9 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages:
   - type: 7
-    amount: 100
+    amount: 1
   - type: 5
-    amount: 100
+    amount: 1
   LayerDetection:
     serializedVersion: 2
     m_Bits: 512

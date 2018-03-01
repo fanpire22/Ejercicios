@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +14,6 @@ public class SimonBelmont : BaseCharacter
     [Tooltip("0: Látigo, 1: Daga, 2: Boomerang, 3: Hacha")]
     [SerializeField] WeaponBase[] _weaponList;
     [SerializeField] Transform _weaponSource;
-    [SerializeField] float _attackRate;
 
     int _currentWeapon;
 
@@ -22,7 +22,6 @@ public class SimonBelmont : BaseCharacter
     private bool _bAttackPressed;
     private bool _bInAir;
 
-    float _nextTimeCanAttack;
 
     private Collider2D[] _footDetection = new Collider2D[5];
 #if UNITY_EDITOR
@@ -79,17 +78,9 @@ public class SimonBelmont : BaseCharacter
             spr.flipX = _horizontalAxis > 0;
         }
 
-        if (_bAttackPressed && Time.time > _nextTimeCanAttack)
+        if (_bAttackPressed)
         {
-            _nextTimeCanAttack = Time.time + _attackRate;
-            base.ani.SetInteger("Weapon", _currentWeapon);
-            base.ani.SetTrigger("Attack");
-
-            float direction = (spr.flipX ? 1 : -1);
-
-            WeaponBase baseW = GameObject.Instantiate(_weaponList[_currentWeapon]);
-            baseW.Initialize(gameObject, direction);
-            baseW.transform.position = _weaponSource.transform.position + Vector3.right * 0.5f * direction;
+            base.Attack();
 
             //switch (_currentWeapon)
             //{
@@ -124,6 +115,19 @@ public class SimonBelmont : BaseCharacter
         }
     }
 
+
+    protected override void OnAttack()
+    {
+
+        base.ani.SetInteger("Weapon", _currentWeapon);
+        base.ani.SetTrigger("Attack");
+
+        float direction = (spr.flipX ? 1 : -1);
+
+        WeaponBase baseW = GameObject.Instantiate(_weaponList[_currentWeapon]);
+        baseW.Initialize(gameObject, direction);
+        baseW.transform.position = _weaponSource.transform.position + Vector3.right * _weaponList[_currentWeapon].SpawnOffset * direction;
+    }
 
 #if UNITY_EDITOR
 

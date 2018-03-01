@@ -21,7 +21,8 @@ public class GenericPortal : MonoBehaviour {
     {
         if(_firstTimeEnter > 0 && Time.time > _firstTimeEnter + CoolDown)
         {
-            GameManager.instance.getSimonSimon().transform.position = Destiny.position;
+            SimonBelmont simonSimon = GameManager.instance.getSimonSimon();
+            simonSimon.transform.position = new Vector3(Destiny.position.x,Destiny.position.y,simonSimon.transform.position.z);
         }
     }
 

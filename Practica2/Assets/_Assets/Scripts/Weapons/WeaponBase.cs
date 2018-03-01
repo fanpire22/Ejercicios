@@ -11,10 +11,11 @@ public struct FDamageWeapon
 
 public class WeaponBase : MonoBehaviour
 {
-    public List<FDamageWeapon> damages;
+    public List<FDamageWeapon> damages = new List<FDamageWeapon>();
     [SerializeField] LayerMask LayerDetection;
     [SerializeField] bool bCanDamageOwner;
     [SerializeField] float LifeDuration = 10f;
+    public float SpawnOffset = 0.5f;
 
     Collider2D _detectionCollider;
     GameObject _owner;

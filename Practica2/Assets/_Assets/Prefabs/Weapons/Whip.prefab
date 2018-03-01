@@ -79,9 +79,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damages:
   - type: 7
-    amount: 50
+    amount: 1
   LayerDetection:
     serializedVersion: 2
     m_Bits: 512
   bCanDamageOwner: 0
   LifeDuration: 0.6
+  SpawnOffset: 1

@@ -35,6 +35,7 @@ public class HealthManager : MonoBehaviour
 
     private Dictionary<EDamageTypes, float> Resistances;
     private Dictionary<EDamageTypes, float> Weakneses;
+    BaseCharacter _ownBaseCharacter;
 
     public int CurrentHealth { get; private set; }
     public bool isAlive
@@ -48,6 +49,7 @@ public class HealthManager : MonoBehaviour
     private void Awake()
     {
         CurrentHealth = MaxHealth;
+        _ownBaseCharacter = GetComponent<BaseCharacter>();
         Resistances = new Dictionary<EDamageTypes, float>();
         Weakneses = new Dictionary<EDamageTypes, float>();
         foreach (SResistances res in resistances)
@@ -81,6 +83,15 @@ public class HealthManager : MonoBehaviour
                 //Somos débiles a ese tipo de daño: Reducimos el daño. No se puede ser resistente y débil: La resistencia anula la debilidad
                 CurrentHealth -= Mathf.Max(0, Mathf.FloorToInt(dmg.amount * (1 + Resistances[dmg.type])));
             }
+            else
+            {
+                CurrentHealth -= dmg.amount;
+            }
+        }
+        if(CurrentHealth < 1)
+        {
+            //Me he muerto
+            OnDeath();
         }
     }
     
@@ -91,7 +102,7 @@ public class HealthManager : MonoBehaviour
 
     protected virtual void OnDeath()
     {
-        Destroy(this.gameObject);
+        _ownBaseCharacter.OnDeath();
     }
 
 }
