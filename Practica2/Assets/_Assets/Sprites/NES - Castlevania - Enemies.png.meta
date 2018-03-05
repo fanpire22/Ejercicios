@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4cd2d99985b17a2409a98325561d4d7e
-timeCreated: 1519925918
+timeCreated: 1520272750
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -8,6 +8,8 @@ TextureImporter:
     21300002: BatFly0
     21300004: BatFly1
     21300006: BatFly2
+    21300008: Birdie0
+    21300010: Birdie1
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -153,7 +155,7 @@ TextureImporter:
         width: 12
         height: 14
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -196,6 +198,34 @@ TextureImporter:
         height: 16
       alignment: 9
       pivot: {x: 0.5, y: 0.15150261}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Birdie0
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 145
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.423656, y: 0.47223854}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Birdie1
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 145
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.42365694, y: 0.23626852}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
