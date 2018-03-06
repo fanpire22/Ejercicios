@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour {
 
     [Header("References")]
     [SerializeField] SimonBelmont _simonSimon;
+    CheckPoint[] checkPoints;
 
     public SimonBelmont getSimonSimon()
     {
@@ -18,5 +19,14 @@ public class GameManager : MonoBehaviour {
     private void Awake()
     {
         GameManager.instance = this;
+        checkPoints = FindObjectsOfType<CheckPoint>();
+    }
+
+    public void ResetCheckPoints()
+    {
+        foreach(CheckPoint chkP in checkPoints)
+        {
+            chkP.Reset();
+        }
     }
 }

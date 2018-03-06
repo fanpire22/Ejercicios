@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class SimonBelmont : BaseCharacter
@@ -12,8 +13,12 @@ public class SimonBelmont : BaseCharacter
     [SerializeField] private float _jumpForce;
     [SerializeField] Inventory _inventory;
     [Tooltip("0: Látigo, 1: Daga, 2: Boomerang, 3: Hacha")]
-    [SerializeField] WeaponBase[] _weaponList;
+    [SerializeField]
+    WeaponBase[] _weaponList;
     [SerializeField] Transform _weaponSource;
+
+    public static bool bRestoreLocation;
+    public static Vector3 RestoreLocation;
 
     int _currentWeapon;
 
@@ -127,6 +132,18 @@ public class SimonBelmont : BaseCharacter
         WeaponBase baseW = GameObject.Instantiate(_weaponList[_currentWeapon]);
         baseW.Initialize(gameObject, direction);
         baseW.transform.position = _weaponSource.transform.position + Vector3.right * _weaponList[_currentWeapon].SpawnOffset * direction;
+    }
+
+    public override void OnDeath()
+    {
+        string Json = File.ReadAllText(string.Format("{0}{1}", FSaveData.FullPath, FSaveData.FileName));
+        FSaveData datos = JsonUtility.FromJson<FSaveData>(Json);
+
+        HealthManager.Heal(int.MaxValue);
+        rig.MovePosition(datos.Position);
+        _inventory.RemoveGold(int.MaxValue);
+
+        print("<size=16><color=red>¡SIMON, TU TALADRO PERFORARÁ EL CIELO! ...o no</color></size>");
     }
 
 #if UNITY_EDITOR

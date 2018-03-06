@@ -6,7 +6,6 @@ public class BatEnemy : BaseCharacter {
 
     [SerializeField] Transform _homeTransform;
     [SerializeField] float _aggroDistance;
-    [SerializeField] float _rateAttack;
     [SerializeField] float _minAttackRange;
     [SerializeField] int _damage;
     WeaponBase fangs;
