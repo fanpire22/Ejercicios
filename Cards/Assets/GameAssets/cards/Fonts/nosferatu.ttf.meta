@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: c5fc522c5582044b08aec6a62dafdbec
+timeCreated: 1481513690
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 40
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Nosferatu
+  fontNames:
+  - Nosferatu
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

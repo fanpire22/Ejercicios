@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: de620df5a1c5942cb94b3949050a6cc1
+timeCreated: 1481513465
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 70
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Magic:the Gathering
+  fontNames:
+  - Magic:the Gathering
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 2
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
