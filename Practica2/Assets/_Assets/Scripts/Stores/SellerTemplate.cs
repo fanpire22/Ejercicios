@@ -5,11 +5,14 @@ using UnityEngine;
 public class SellerTemplate : MonoBehaviour
 {
     bool bOpenStore;
+    bool bInStore;
     public Item[] items;
 
     // Update is called once per frame
     void Update()
     {
+        if (!bInStore) return;
+
         if (Input.GetKeyDown(KeyCode.Space) && !bOpenStore)
         {
 
@@ -19,6 +22,22 @@ public class SellerTemplate : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && bOpenStore)
         {
             bOpenStore = StoreWindow.unloadStore();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            bInStore = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            bInStore = false;
         }
     }
 

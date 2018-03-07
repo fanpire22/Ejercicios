@@ -8,16 +8,31 @@ public class MovingPlat : MonoBehaviour {
 
     [SerializeField] Transform PositionA;
     [SerializeField] Transform PositionB;
+    [SerializeField] bool bPlayOnAwake = true;
+    
+    Sequence sequence;
 
     void Start()
     {
         Rigidbody2D rig = GetComponent<Rigidbody2D>();
-        Sequence sequence = DOTween.Sequence();
+        sequence = DOTween.Sequence();
 
         sequence.Append(transform.DOMove(PositionB.position, 5))
         .Append(transform.DOMove(PositionA.position, 5));
 
-        sequence.SetLoops(-1).Play();
+        sequence.SetLoops(-1).Pause();
+        if (bPlayOnAwake) StartMoving();
+    }
+
+    public void StartMoving()
+    {
+        sequence.Play();
+    }
+
+    public void StopMoving()
+    {
+
+        sequence.Pause();
     }
 
     /// <summary>

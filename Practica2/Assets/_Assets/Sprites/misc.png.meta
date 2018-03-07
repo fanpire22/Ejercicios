@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 519fb4f95f3e1a041bcd11d5a7e9b839
-timeCreated: 1520360251
+timeCreated: 1520447174
 licenseType: Pro
 TextureImporter:
   fileIDToRecycleName:
@@ -39,8 +39,8 @@ TextureImporter:
     21300064: misc_32
     21300066: misc_33
     21300068: misc_34
-    21300070: misc_35
-    21300072: misc_36
+    21300070: Switch0
+    21300072: Switch1
     21300074: misc_37
     21300076: misc_38
     21300078: misc_39
@@ -748,7 +748,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: misc_35
+      name: Switch0
       rect:
         serializedVersion: 2
         x: 47
@@ -762,7 +762,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: misc_36
+      name: Switch1
       rect:
         serializedVersion: 2
         x: 58

@@ -9,12 +9,12 @@ public class Boomerang : WeaponBase {
     [SerializeField] float distance;
     Vector3 returnPoint;
 
-    bool bArrived = false;
+    bool bArrived;
     float overrideDirection = 1;
 
     protected override void Update()
     {
-        if(!bArrived && Vector3.Distance(transform.position, returnPoint) < 0.01f)
+        if(!bArrived && (Vector3.Distance(transform.position, returnPoint) < 0.1f))
         {
             //Volvemos
             bArrived = true;
@@ -38,7 +38,7 @@ public class Boomerang : WeaponBase {
     protected override void Start()
     {
         base.Start();
-        returnPoint = transform.position += Vector3.right * _direction *  distance;
-        Debug.DrawLine(returnPoint, transform.position);
+
+        returnPoint = transform.position + (Vector3.right * _direction *  distance);
     }
 }

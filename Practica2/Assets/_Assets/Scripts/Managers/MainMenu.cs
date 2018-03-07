@@ -23,7 +23,7 @@ public class MainMenu : MonoBehaviour
         SimonBelmont.bRestoreLocation = true;
         SimonBelmont.RestoreLocation = datos.Position;
 
-        SceneManager.LoadScene(datos.SceneIndex);
+        SceneManager.LoadScene(datos.SceneIndex, LoadSceneMode.Single);
 
     }
 

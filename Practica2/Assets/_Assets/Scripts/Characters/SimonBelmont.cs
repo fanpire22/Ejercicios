@@ -33,7 +33,7 @@ public class SimonBelmont : BaseCharacter
     private void Start()
     {
 
-        _inventory.AddGold(5000);
+        _inventory.AddGold(15000);
     }
 #endif
     public Inventory GetInventory()
@@ -144,6 +144,19 @@ public class SimonBelmont : BaseCharacter
         _inventory.RemoveGold(int.MaxValue);
 
         print("<size=16><color=red>¡SIMON, TU TALADRO PERFORARÁ EL CIELO! ...o no</color></size>");
+    }
+
+    /// <summary>
+    /// cuando se ha cargado el nivel, restauramos la localización de Simon
+    /// </summary>
+    /// <param name="level">Nivel cargado</param>
+    private void OnLevelWasLoaded(int level)
+    {
+        if (bRestoreLocation)
+        {
+            rig.MovePosition(RestoreLocation);
+            bRestoreLocation = false;
+        }
     }
 
 #if UNITY_EDITOR
