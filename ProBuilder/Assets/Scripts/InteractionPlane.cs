@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.EventSystems;
 
-public class InteractionPlane : MonoBehaviour
+public class InteractionPlane : MonoBehaviour, IPointerClickHandler
 {
     NavMeshAgent _player;
 
@@ -25,5 +26,10 @@ public class InteractionPlane : MonoBehaviour
         {
             _player.SetDestination(clickedPosition);
         }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        OnTerrainClicked(eventData);
     }
 }
