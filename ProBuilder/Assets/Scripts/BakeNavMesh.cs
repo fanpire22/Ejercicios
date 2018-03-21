@@ -16,7 +16,7 @@ public class BakeNavMesh : MonoBehaviour
 
     private void Start()
     {
-        _surface.BuildNavMesh();
+        //_surface.BuildNavMesh();
     }
 
     // Update is called once per frame

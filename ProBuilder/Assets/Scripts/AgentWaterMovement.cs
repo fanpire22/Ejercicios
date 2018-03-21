@@ -20,7 +20,7 @@ public class AgentWaterMovement : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer.Equals("Water"))
+        if (other.gameObject.CompareTag("Water"))
         {
             _agent.speed = _baseSpeed * _speedReductionFactor;
         }
@@ -28,7 +28,7 @@ public class AgentWaterMovement : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer.Equals("Water"))
+        if (other.gameObject.CompareTag("Water"))
         {
 
             _agent.speed = _baseSpeed;
