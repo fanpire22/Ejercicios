@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 01f8b76e0d9cfea4abe2e740de98eddb
-timeCreated: 1523387110
+guid: 913070003430c054dba2d92939ed7fba
+timeCreated: 1523378836
 licenseType: Pro
-NativeFormatImporter:
+ShaderImporter:
   externalObjects: {}
-  mainObjectFileID: 23800000
+  defaultTextures: []
   userData: 
   assetBundleName: 
   assetBundleVariant: 

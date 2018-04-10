@@ -13,13 +13,13 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: SpeedZ
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -240,8 +240,8 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: SpeedX
     m_Mirror: 0
-  m_BlendParameter: SpeedX
-  m_BlendParameterY: SpeedZ
+  m_BlendParameter: SpeedZ
+  m_BlendParameterY: SpeedX
   m_MinThreshold: 0
   m_MaxThreshold: 1
   m_UseAutomaticThresholds: 1
