@@ -11,10 +11,16 @@ public class Soldier : MonoBehaviour
     [SerializeField] Transform _boobies;
 
     RagDoll _rag;
+    protected NavMeshAgent _agent;
+    protected Animator _ani;
+
+    protected bool _isDead = false;
 
     protected virtual void Awake()
     {
         _rag = GetComponent<RagDoll>();
+        _agent = GetComponent<NavMeshAgent>();
+        _ani = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -45,8 +51,15 @@ public class Soldier : MonoBehaviour
 
     }
 
+    protected virtual void Update()
+    {
+
+    }
+
     public virtual void OnDeath()
     {
+        _isDead = true;
+        _agent.enabled = false;
         _rag.ActivateRagDoll();
     }
 }

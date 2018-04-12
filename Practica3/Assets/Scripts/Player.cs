@@ -5,13 +5,24 @@ using UnityEngine.AI;
 
 public class Player : Soldier
 {
-    
-    protected NavMeshAgent _agent;
 
-    private void Awake()
+    Projector _alertProjector;
+    SphereCollider _alertCollider;
+
+    protected override void Awake()
     {
         base.Awake();
-        _agent = GetComponent<NavMeshAgent>();
+
+        _alertProjector = GetComponentInChildren<Projector>();
+        _alertCollider = _alertProjector.GetComponent<SphereCollider>();
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+
+        UpdateAlertArea();
+        UpdateInput();
     }
 
     public void GoToDestination(Vector3 destination)
@@ -19,4 +30,17 @@ public class Player : Soldier
         _agent.SetDestination(destination);
     }
 
+    void UpdateAlertArea()
+    {
+        _alertProjector.orthographicSize = _agent.velocity.magnitude;
+        _alertCollider.radius = _agent.velocity.magnitude;
+    }
+
+    void UpdateInput()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            _ani.SetTrigger("Crouch");
+        }
+    }
 }

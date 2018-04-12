@@ -6,11 +6,12 @@ public class RagDoll : MonoBehaviour {
 
     Animator _ani;
     private Rigidbody[] _rigs;
+    [SerializeField]private Transform _rootBone;
 
     private void Awake()
     {
         _ani = GetComponent<Animator>();
-        _rigs = GetComponentsInChildren<Rigidbody>();
+        _rigs = _rootBone.GetComponentsInChildren<Rigidbody>();
     }
 
     public void ActivateRagDoll()
