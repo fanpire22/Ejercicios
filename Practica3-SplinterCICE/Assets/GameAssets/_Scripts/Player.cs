@@ -1,9 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Player : Soldier {
+
 
     #region Editor properties
 
@@ -28,6 +30,13 @@ public class Player : Soldier {
 
     bool _isIdle;
     bool _isAiming;
+
+    #endregion
+
+    #region Events
+
+    public Action OnShoot;
+    public Action OnDie;
 
     #endregion
 
@@ -235,6 +244,12 @@ public class Player : Soldier {
     {
         EndAiming();
         base.Die();
+
+        //Si el evento está siendo escuchado, lo lanzamos
+        if(OnDie != null)
+        {
+            OnDie.Invoke();
+        }
     }
 
     #endregion
