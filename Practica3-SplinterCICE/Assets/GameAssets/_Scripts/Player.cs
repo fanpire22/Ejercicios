@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Player : Soldier {
+public class Player : Soldier
+{
 
 
     #region Editor properties
@@ -20,7 +21,6 @@ public class Player : Soldier {
 
     #region Component references
 
-    Enemy _targetEnemy;
     Projector _alertAreaProjector;
     SphereCollider _alertAreaCollider;
 
@@ -30,6 +30,11 @@ public class Player : Soldier {
 
     bool _isIdle;
     bool _isAiming;
+    Enemy _targetEnemy;
+    bool _isInteracting;
+    bool _canInteractCancel;
+    Interactive _targetInteract;
+    InteractionIK _interactionIK;
 
     #endregion
 
@@ -46,6 +51,7 @@ public class Player : Soldier {
 
         _alertAreaProjector = GetComponentInChildren<Projector>();
         _alertAreaCollider = _alertAreaProjector.GetComponent<SphereCollider>();
+        _interactionIK = GetComponent<InteractionIK>();
 
         _aimLaser.SetActive(false);
         _attackIcon.gameObject.SetActive(false);
@@ -54,7 +60,7 @@ public class Player : Soldier {
 
     protected override void Start()
     {
-        base.Start();        
+        base.Start();
 
         BeginIdle();
     }
@@ -120,10 +126,10 @@ public class Player : Soldier {
     #endregion
 
     #region State: Aiming
-    
+
     void BeginAiming()
     {
-        if(!_isAiming)
+        if (!_isAiming)
         {
             _isAiming = true;
 
@@ -137,18 +143,18 @@ public class Player : Soldier {
 
     void UpdateAiming()
     {
-        if(_isAiming && _targetEnemy != null)
+        if (_isAiming && _targetEnemy != null)
         {
             Vector3 directionToEnemy = _targetEnemy.transform.position - this.transform.position;
             Quaternion desiredRotation = Quaternion.LookRotation(directionToEnemy);
             this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, desiredRotation, _agent.angularSpeed * Time.deltaTime);
 
             float angle = Vector3.Angle(this.transform.forward, directionToEnemy);
-            
+
             RaycastHit hitInfo;
             if (angle < 1 && RaycastToSoldier(_targetEnemy, out hitInfo))
             {
-                
+
 
                 Soldier hittedSoldier = hitInfo.collider.GetComponentInParent<Soldier>();
                 if (hittedSoldier != null && hittedSoldier == _targetEnemy)
@@ -175,7 +181,7 @@ public class Player : Soldier {
                 _attackIcon.gameObject.SetActive(false);
                 _forbiddenIcon.gameObject.SetActive(false);
             }
-            
+
 
         }
     }
@@ -202,8 +208,8 @@ public class Player : Soldier {
     #region Input actions
 
     public void GoToDestination(Vector3 destination)
-    {        
-        if(_isDead) { return; }
+    {
+        if (_isDead) { return; }
 
         BeginIdle();
 
@@ -228,7 +234,7 @@ public class Player : Soldier {
     {
         if (_isDead) return;
 
-        if(HasLineOfSightToSoldier(_targetEnemy) && _attackIcon.gameObject.activeInHierarchy)
+        if (HasLineOfSightToSoldier(_targetEnemy) && _attackIcon.gameObject.activeInHierarchy)
         {
             _targetEnemy.Die();
 
@@ -246,9 +252,80 @@ public class Player : Soldier {
         base.Die();
 
         //Si el evento está siendo escuchado, lo lanzamos
-        if(OnDie != null)
+        if (OnDie != null)
         {
             OnDie.Invoke();
+        }
+    }
+
+    #endregion
+
+    #region Interactive
+
+    public void InteractWithItem(Interactive item)
+    {
+        _targetInteract = item;
+
+        BeginInteracting();
+    }
+
+    void BeginInteracting()
+    {
+        if (!_isInteracting)
+        {
+            _isInteracting = true;
+
+            EndIdle();
+            EndAiming();
+
+            StartCoroutine(UpdateInteractingCoroutine());
+        }
+
+    }
+
+    IEnumerator UpdateInteractingCoroutine()
+    {
+        //Nos acercamos a la posición deseada
+        _agent.SetDestination(_targetInteract.InteractionPoint.position);
+        while (_agent.pathPending || _agent.remainingDistance > 0.1)
+        {
+            yield return null;
+        }
+
+        //Hemos llegado al objeto: Ya no podemos cancelar
+        _canInteractCancel = false;
+
+        //Determinamos hacia dónde queremos girar y vamos rotando
+        Vector3 desiredForward = Vector3.ProjectOnPlane(_targetInteract.InteractionPoint.forward, Vector3.up);
+        Vector3 myForward = Vector3.ProjectOnPlane(this.transform.forward, Vector3.up);
+        float angle = Vector3.Angle(myForward, desiredForward);
+        while (angle > 0.1)
+        {
+            this.transform.forward = Vector3.RotateTowards(myForward, desiredForward, Mathf.Deg2Rad * _agent.angularSpeed * Time.deltaTime, 0);
+
+            yield return null;
+
+            myForward = Vector3.ProjectOnPlane(this.transform.forward, Vector3.up);
+            angle = Vector3.Angle(myForward, desiredForward);
+        }
+
+        _interactionIK.ActivateIK(_targetInteract.Handler);
+        yield return new WaitForSeconds(0.5f);
+
+        yield return StartCoroutine(_targetInteract.ActivateInteractionCoRoutine());
+        EndInteracting();
+    }
+
+    void EndInteracting()
+    {
+        StopCoroutine(UpdateInteractingCoroutine());
+
+        if(_isInteracting)
+        {
+            _isInteracting = false;
+            _interactionIK.DisableIK();
+
+            BeginIdle();
         }
     }
 

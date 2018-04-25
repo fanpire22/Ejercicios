@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InteractionIK : MonoBehaviour
 {
-    [SerializeField] Transform _target;
+    Transform _target;
 
     Animator _ani;
     float _IKWeight;
@@ -24,9 +24,10 @@ public class InteractionIK : MonoBehaviour
         _ani = GetComponent<Animator>();
     }
 
-    public void ActivateIK()
+    public void ActivateIK(Transform Target)
     {
         _isIKActive = true;
+        _target = Target;
     }
 
     public void DisableIK()
@@ -36,10 +37,6 @@ public class InteractionIK : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (_isIKActive) { DisableIK(); } else { ActivateIK(); };
-        }
 
         if (_isIKActive)
         {

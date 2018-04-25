@@ -27,5 +27,11 @@ public class VCamTrigger : MonoBehaviour {
             _vCam.enabled = false;
         }
     }
+
+    public void DisableMe()
+    {
+        _vCam.enabled = false;
+        Destroy(this);
+    }
     
 }
