@@ -33,7 +33,6 @@ public class Interactive : MonoBehaviour, IPointerClickHandler
         if (_nActivated < _maxActivations || _maxActivations == 0)
         {
             GameManager.instance.player.InteractWithItem(this);
-            _nActivated++;
         }
     }
 
@@ -48,7 +47,8 @@ public class Interactive : MonoBehaviour, IPointerClickHandler
             _dir.Play();
             yield return new WaitForSeconds((float)_dir.duration);
         }
-
+        
+        _nActivated++;
         if (_camTrigger != null && _nActivated == _maxActivations)
         {
             _camTrigger.DisableMe();

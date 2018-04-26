@@ -16,6 +16,11 @@ public class Player : Soldier
     [SerializeField] Transform _forbiddenIcon;
 
     [SerializeField] GameObject _aimLaser;
+    [SerializeField] float _walkSpeed = 3f;
+    [SerializeField] float _runSpeed = 4.5f;
+    [SerializeField] float _crouchSpeed = 2f;
+    [SerializeField] float _maxAlertShootRadius = 6f;
+
 
     #endregion
 
@@ -30,11 +35,15 @@ public class Player : Soldier
 
     bool _isIdle;
     bool _isAiming;
+    bool _isCrouching = false;
     Enemy _targetEnemy;
     bool _isInteracting;
-    bool _canInteractCancel;
+    bool _canInteractCancel = true;
     Interactive _targetInteract;
+    Coroutine _updateInteractionCoroutine;
     InteractionIK _interactionIK;
+
+    float _currentShootRadius;
 
     #endregion
 
@@ -80,17 +89,28 @@ public class Player : Soldier
 
     void UpdateAlertArea()
     {
-        _alertAreaProjector.orthographicSize = _agent.velocity.magnitude * _alertSpeedScale;
-        _alertAreaCollider.radius = _agent.velocity.magnitude * _alertSpeedScale;
+        _currentShootRadius = Mathf.Max(0, _currentShootRadius - (Time.deltaTime * _maxAlertShootRadius));
+
+        float usedRadius = Mathf.Max(_currentShootRadius, _agent.velocity.magnitude * _alertSpeedScale);
+
+        _alertAreaProjector.orthographicSize = usedRadius;
+        _alertAreaCollider.radius = usedRadius;
     }
 
 
     void UpdateInput()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+
+        if (Input.GetKeyDown(KeyCode.LeftControl) && _canInteractCancel)
         {
-            _animator.SetTrigger("crouch");
+            _isCrouching = !_isCrouching;
+            _animator.SetBool("crouch", _isCrouching);
+
+
         }
+
+        //Determinamos primero si el jugador está corriendo
+        _agent.speed = (_isCrouching ? _crouchSpeed : (Input.GetKey(KeyCode.LeftShift) ? _runSpeed : _walkSpeed));
     }
 
     #endregion
@@ -129,6 +149,9 @@ public class Player : Soldier
 
     void BeginAiming()
     {
+        if (!_canInteractCancel) return;
+
+        EndInteracting();
         if (!_isAiming)
         {
             _isAiming = true;
@@ -209,7 +232,9 @@ public class Player : Soldier
 
     public void GoToDestination(Vector3 destination)
     {
-        if (_isDead) { return; }
+        if (_isDead || !_canInteractCancel) { return; }
+
+        EndInteracting();
 
         BeginIdle();
 
@@ -218,7 +243,10 @@ public class Player : Soldier
 
     public void AimAtTargetEnemy(Enemy enemy)
     {
-        if (_isDead) { return; }
+        if (_isDead || !_canInteractCancel) { return; }
+
+
+        EndInteracting();
 
         if (_targetEnemy != null)
         {
@@ -236,6 +264,8 @@ public class Player : Soldier
 
         if (HasLineOfSightToSoldier(_targetEnemy) && _attackIcon.gameObject.activeInHierarchy)
         {
+            _currentShootRadius = _maxAlertShootRadius;
+
             _targetEnemy.Die();
 
             BeginIdle();
@@ -251,6 +281,7 @@ public class Player : Soldier
         EndAiming();
         base.Die();
 
+        EndInteracting();
         //Si el evento está siendo escuchado, lo lanzamos
         if (OnDie != null)
         {
@@ -278,7 +309,7 @@ public class Player : Soldier
             EndIdle();
             EndAiming();
 
-            StartCoroutine(UpdateInteractingCoroutine());
+            _updateInteractionCoroutine = StartCoroutine(UpdateInteractingCoroutine());
         }
 
     }
@@ -291,9 +322,6 @@ public class Player : Soldier
         {
             yield return null;
         }
-
-        //Hemos llegado al objeto: Ya no podemos cancelar
-        _canInteractCancel = false;
 
         //Determinamos hacia dónde queremos girar y vamos rotando
         Vector3 desiredForward = Vector3.ProjectOnPlane(_targetInteract.InteractionPoint.forward, Vector3.up);
@@ -309,6 +337,18 @@ public class Player : Soldier
             angle = Vector3.Angle(myForward, desiredForward);
         }
 
+        //Hemos llegado al objeto: Ya no podemos cancelar
+        _canInteractCancel = false;
+
+        if (_isCrouching)
+        {
+            //Incorporamos al personaje
+            _isCrouching = false;
+            _animator.SetBool("crouch", false);
+
+            yield return new WaitForSeconds(0.5f);
+        }
+
         _interactionIK.ActivateIK(_targetInteract.Handler);
         yield return new WaitForSeconds(0.5f);
 
@@ -318,14 +358,17 @@ public class Player : Soldier
 
     void EndInteracting()
     {
-        StopCoroutine(UpdateInteractingCoroutine());
 
-        if(_isInteracting)
+        if (_isInteracting)
         {
+            StopCoroutine(_updateInteractionCoroutine);
+
             _isInteracting = false;
             _interactionIK.DisableIK();
 
-            BeginIdle();
+            _canInteractCancel = true;
+
+            if (!_isAiming && !_isDead) BeginIdle();
         }
     }
 
