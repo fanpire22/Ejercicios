@@ -13,14 +13,14 @@ TagManager:
   - UI
   - 
   - 
-  - Character
   - Floor
-  - BodyParts
+  - Enemies
+  - EnemyBodyParts
   - AlertArea
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - MiniMap
+  - MainCamera
+  - PlayerBodyParts
   - 
   - 
   - 
